@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Simple link visualize - a bookmaklet</title>
+    </head>
+    <body>
+<h1>Simple link visualizer</h1>
+<p>A bookmarklet for displaying links on a page</p>
+<h2>Link</h2>
+<a href="
+javascript: (() => {
+    
+    var css = '
+    
+    a[href *= http]:empty {
+        color: red;
+        background-color: lime;
+        margin: 1em;
+        padding: 1em;
+        border: 1px solid;
+        display: inline-block;
+    }
+    a[href *= http]::after {
+        content: \'🤔 \'attr(href);
+        color: black;
+        background-color: yellow;
+        font-family: \'Comic Sans MS\';
+        font-size: 20px;
+        line-height: 1.2;
+        display: inline-block;
+    }
+    a[href *= http]:empty::after {
+        content: \'🕵️👀⛔️ \'attr(href);
+        color: black;
+        background-color: lime;
+        display: block;
+    }
+    
+    ;',
+
+    head = document.head || document.getElementsByTagName('head')[0],
+    style = document.createElement('style');
+
+    head.appendChild(style);
+
+    style.type = 'text/css';
+    style.appendChild(document.createTextNode(css));
+
+
+  })();
+">
+    Simple link visualizer
+  </a>
+  <hr>
+
+  <h3>How to set it up</h3>
+  <p>Two methods to set up the bookmarklet:</p>
+  <ul>
+    <li>
+        drag the link to your bookmark bar;
+    </li>
+    <li>
+        or manually create a new bookmark that points to the link URL. <br>
+        <i>Right-clic on the link, copy the link address, open the browser bookmarks and create a new bookmark, paste in the URL field what was previoulsey copied.</i>
+    </li>
+  </ul>
+  <h3>How to use it</h3>
+  <p>Go to the page you want to test and then to the bookmarked page.</p>
+  <h3>Results</h3>
+  <p>Links on the page that include "http" (so external links for sure) will be displayed prominently.<br>
+  Links in empty tags will also be displayed with extra emphasis.<br>
+  <p>Good luck! Hope your links are as expected and if not fix them!</p>
+
+  <hr>
+  <p>
+    <i>
+        Made in spare time by Giulia Laco (<a href="https://twitter.com/webmatter_it">Twitter</a>), in July 2022
+    </i>
+  </p>
+</body>
+</html>
